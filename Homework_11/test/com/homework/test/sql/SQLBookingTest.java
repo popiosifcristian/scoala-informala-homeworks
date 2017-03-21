@@ -210,10 +210,13 @@ public class SQLBookingTest {
 
         List rs = new ArrayList();
 
+        accomodationFairRelationDAO.setAll();
+
         try(Connection connection = bookingDbTest.connect()){
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT accomodation.id,accomodation.type,accomodation.bed_type,accomodation.max_guests,accomodation.description,room_fair.value FROM accomodation INNER JOIN room_fair ON accomodation.id=room_fair.id;");
-
+            ResultSet resultSet = statement.executeQuery("select accomodation.id,accomodation.type,accomodation.bed_type,accomodation.max_guests,accomodation.description, room_fair.value\n" +
+                    "from accomodation inner join room_fair on accomodation.id = room_fair.id\n" +
+                    "inner join accomodation_fair_relation on room_fair.id=accomodation_fair_relation.id_room_fair;");
             while(resultSet.next()){
                 rs.add(resultSet.getInt(1));
                 rs.add(resultSet.getString(2));
