@@ -1,2 +1,2 @@
-# scoala-informala-homeworks
+# Pop Iosif Cristian
 Homeworks
